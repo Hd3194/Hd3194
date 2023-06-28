@@ -1,0 +1,52 @@
+from itertools import groupby
+M = int(input())
+lst = [input() for p in range(M)]
+
+for i in range(len(lst)):
+    o = lst[i]
+    if len(o.strip()) == 16:
+        if o.isdigit():
+            if o.startswith("4") or o.startswith("5") or o.startswith("6"):
+                l = groupby(o)
+                for x, y in l:
+                    if len(list(y)) > 3:
+                        lst[i] = "Invalid"
+                        break
+                else:
+                    lst[i] = "Valid"
+            else:
+                lst[i] = "Invalid"
+        else:
+            lst[i] = "Invalid"
+    elif len(o.strip()) == 19:
+        if o[4] == '-':
+            if "-" in o:
+                if o.count("-") == 3:
+                    o = o.replace("-","")
+                    if len(o.strip()) == 16:
+                        if o.isdigit():
+                            if o.startswith("4") or o.startswith("5") or o.startswith("6"):
+                                l = groupby(o)
+                                for x, y in l:
+                                    if len(list(y)) > 3:
+                                        lst[i] = "Invalid"
+                                        break
+                                else:
+                                    lst[i] = "Valid"
+                            else:
+                                lst[i] = "Invalid"
+                        else:
+                            lst[i] = "Invalid"
+                    else:
+                        lst[i] = "Invalid"
+                else:
+                    lst[i] = "Invalid"
+            else:
+                lst[i] = "Invalid"
+        else:
+            lst[i] = "Invalid"
+    else:
+        lst[i] = "Invalid"
+
+for u in lst:
+    print(u)
